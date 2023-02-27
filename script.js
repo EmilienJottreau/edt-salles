@@ -280,7 +280,7 @@ async function main(date)
     div_mask.style.visibility = "visible";
     div_loader.style.visibility = "visible";
     //mettre truc de chargement
-    const data = await make_request(date, date==lastDate);
+    const data = await make_request(date, ((date==lastDate) ? 1 : 0));
     lastDate = date;
     //console.log(data);
     generatePage(data);
