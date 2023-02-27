@@ -131,10 +131,10 @@ function generateDate(){
     var yyyy = today.getFullYear();
     
     //base
-    //input_date_jours.value = dd;
+    input_date_jours.value = dd;
     /////
     //pour debug
-    input_date_jours.value = 15;
+    //input_date_jours.value = 15;
     
     
     /////
