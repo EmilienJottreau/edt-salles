@@ -355,6 +355,7 @@ input[type=checkbox] {
   
 #checkbox_IT{
     margin-right: 10px;
+    height: 1.3888em; /*le bricolage jpp*/
 }
 #label_checkbox_IT{
     display: flex;
