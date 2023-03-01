@@ -14,6 +14,17 @@
 }
 body{
     background-color:  rgb(51, 51, 51);
+
+
+
+    /*switch*/
+    --switch-size:1em;
+    --switch-border-width:0.1875em;
+    --switch-border-inner-radius:calc(var(--switch-size) / 2);
+    --switch-border-outer-radius:calc(
+      var(--switch-border-inner-radius) + 
+      var(--switch-border-width)
+    );
 }
 nav > *{
     margin-left: auto;
@@ -154,16 +165,15 @@ button:hover{
     display: grid;
     grid-template-columns: 1fr 1fr 2fr 1fr 1fr;
     margin-top: 2em;
+    justify-items: start;
     
 }
-.date_selector > * {
-    color:rgba(255, 168, 38, 0.920);
-}
-
 
 /* apply property to all children */
 .date_selector > * {
     margin: 10px;
+    color:rgba(255, 168, 38, 0.920);
+    width: calc(100% - 20px);
 }
 
 
@@ -220,14 +230,6 @@ button:hover{
 
 
 
-
-.date_selector > input:valid:not(#search_bar) {
-    background-color: palegreen;
-}
-
-.date_selector > input:invalid{
-    background-color: lightpink;
-}
 /* Remove little arrow arround number */
 
 /* Chromium & Safari */
@@ -318,61 +320,44 @@ input[type=number] {
     }
   }
 
+/* Related to switch https://medium.com/codex/even-better-styled-html-css-checkboxes-7e9345b5bffd */
+
+input[type=checkbox] {
+    appearance:none;
+    display:inline-block;
+    vertical-align:middle;
+    padding:0 var(--switch-size) 0 0;
+    background:#949494;
+    border:var(--switch-border-width) solid #008;
+    border-radius:var(--switch-border-outer-radius);
+    transition:background 0.3s, padding 0.3s;
+    width:calc(var(--switch-size)*2.5);
+  }
   
-
-
-/* -- ↓ ↓ ↓ some responsiveness ↓ ↓ ↓ -- */
-/*
-@media(max-width: 1000px) {
-body {
-    align-items: flex-start;  
-    overflow: auto;
+  input[type=checkbox]:before {
+    content:"";
+    display:block;
+    width:var(--switch-size);
+    height:var(--switch-size);
+    background:#FFF;
+    border-radius:var(--switch-border-inner-radius);
+    transition:background 0.3s;
+  }
+  
+  input[type=checkbox]:checked {
+    padding:0 0 0 var(--switch-size);
+    background:#17D;
+  }
+  
+  input[type=checkbox]:checked:before {
+    background:#8CF;
+  }
+  
+#checkbox_IT{
+    margin-right: 10px;
+}
+#label_checkbox_IT{
+    display: flex;
 }
 
-#cards {    
-    max-width: 1000px;
-    padding: 10px 0px;
-}
 
-.card {
-    flex-shrink: 1;
-    width: calc(50% - 4px);
-}
-}
-
-@media(max-width: 500px) {
-.card {
-    height: 180px;
-}
-
-.card-image {
-    height: 80px;  
-}
-
-.card-image > i {
-    font-size: 3em;
-}
-    
-.card-info-wrapper {
-    padding: 0px 10px;
-}
-
-.card-info > i { 
-    font-size: 0.8em; 
-}
-
-.card-info-title > h3 {
-    font-size: 0.9em;
-}
-
-.card-info-title > h4 {
-    font-size: 0.8em;
-    margin-top: 4px;
-}
-}
-
-@media(max-width: 320px) {
-.card {
-    width: 100%;
-}
-}*/

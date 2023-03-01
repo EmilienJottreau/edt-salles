@@ -1,12 +1,15 @@
 var salles = [];
 var lastDate = "";
 
+const salles_info = ['120','211','213','216','217','219','319','E10','E12','E13','E22','E23','E24'] //pas sur pour E10,E12,E13,E16
+
 
 function generatePage(data){
     salles = [];
 
 
     document.getElementById("search_bar").style.visibility = "visible";
+    document.getElementById("label_checkbox_IT").style.visibility = "visible";
 
 
     const div_salles = document.createElement('div');
@@ -23,7 +26,8 @@ function generatePage(data){
         
         const div_salle = document.createElement("div");
         //div_salle.textContent = "div numero " + i;
-        div_salle.className += "card salle";
+        div_salle.className += "salle";
+        if(salles_info.includes(nom_salles[i])) div_salle.className += " info"; 
         div_salle.id = nom_salles[i];
         div_salles.appendChild(div_salle);
     
@@ -163,7 +167,7 @@ function generateDate(){
     input_date_annees.value = yyyy;
 
     lastDate = yyyy + mm + "15";
-    console.log(lastDate);
+    //console.log(lastDate);
     
     const button_date = document.createElement('button');
     button_date.onclick = ()=>{getDate(0)};
@@ -191,6 +195,25 @@ function generateDate(){
     input_search.onkeyup = search; //bind search function
     input_search.placeholder = "Cherchez votre salle !";
     input_search.style.visibility = "hidden";
+
+    
+    
+
+    const checkbox_IT = document.createElement('input');
+    checkbox_IT.id = "checkbox_IT";
+    checkbox_IT.type = "checkbox";
+    checkbox_IT.onchange = reveal_IT_Room; 
+
+    const div_checkbox_description = document.createElement('div');
+    div_checkbox_description.textContent = "Que les salles informatiques";
+
+
+    const label_checkbox_IT = document.createElement('label');
+    label_checkbox_IT.id = "label_checkbox_IT";
+    label_checkbox_IT.appendChild(checkbox_IT);
+    label_checkbox_IT.appendChild(div_checkbox_description);
+    //label_checkbox_IT.innerHTML += "Que les salles informatiques"; //ca marche pas et c'est bien dommage
+    label_checkbox_IT.style.visibility = "hidden";
     
     
 
@@ -214,12 +237,13 @@ function generateDate(){
     div_date.appendChild(button_next_date);
     div_date.appendChild(button_date);
     div_date.appendChild(input_search);
+    div_date.appendChild(label_checkbox_IT);
     div_date.appendChild(div_date_invalid);
 }
 
 async function make_request(date, forceReload)
 {
-    console.log(forceReload);
+    //console.log(forceReload);
     const response = await fetch('https://edt-salles.alwaysdata.net/?date=' + date + "&forceReload=" + forceReload);
     const data = await response.json();
     return data;
@@ -227,7 +251,7 @@ async function make_request(date, forceReload)
 
 function search(){
     const input_search_bar = String(document.getElementById("search_bar").value).toLowerCase();
-    console.log(input_search_bar);
+    //console.log(input_search_bar);
     
     //mettre en visibility hidden + position absolute
     //pensez a input vide = tout visible
@@ -240,6 +264,19 @@ function search(){
             salle_selected.style.visibility = "hidden";
             salle_selected.style.position = "absolute";
         }
+    }
+}
+
+function reveal_IT_Room(){
+    const nonInfoRoom = document.querySelectorAll('.salle:not(.info)'); // Sélectionne toutes les cartes qui ne sont pas de la classe "info"
+    if(document.getElementById("checkbox_IT").checked){
+        nonInfoRoom.forEach((room) => {
+        room.style.display = 'none'; // Masque chaque carte qui n'a pas la classe "info"
+        });
+    } else {
+        nonInfoRoom.forEach((room) => {
+            room.style.display = ''; // Masque chaque carte qui n'a pas la classe "info"
+        });
     }
 }
 
