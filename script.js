@@ -87,7 +87,6 @@ function generatePage(data){
         const today = new Date();
         var hh = today.getHours();
         const mm = today.getMinutes();
-        hh=13;
         if(hh>19) hh = 19;
         div_hour_indicator_container.style.gridRowStart = hh-7;
         const div_hour_indicator = document.createElement("div");
