@@ -71,7 +71,7 @@ function generatePage(data){
             div_creneau.style.marginTop = margTop;
             div_creneau.style.marginBottom = margBot;
             div_creneau.style.gridRowStart = debut;
-            div_creneau.style.gridRowEnd = fin;
+            div_creneau.style.gridRowEnd = fin - ((margBot=="0px") ? 1 : 0);
             div_salle_content.appendChild(div_creneau);
     
         }
