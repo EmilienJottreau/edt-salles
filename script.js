@@ -83,13 +83,14 @@ function generatePage(data){
         const today = new Date();
         var hh = today.getHours();
         const mm = today.getMinutes();
+        hh=13;
         if(hh>19) hh = 19;
         div_hour_indicator_container.style.gridRowStart = hh-7;
         const div_hour_indicator = document.createElement("div");
         div_hour_indicator.className = "hour_indicator";
         const div_hour_indicator_triangle = document.createElement("div");
         div_hour_indicator_triangle.className = "hour_indicator_triangle";
-        div_hour_indicator.style.top = String(9+size_div_horaire*mm/60)+'px';
+        div_hour_indicator.style.top = String(size_div_horaire*mm/60)+'px';
         div_hour_indicator_triangle.style.top = String(size_div_horaire*mm/60)+'px';
 
         div_salle_content.appendChild(div_hour_indicator_container);

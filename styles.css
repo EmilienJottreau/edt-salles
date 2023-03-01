@@ -116,7 +116,7 @@ nav > *{
     width: 100%;
     z-index: 5;
     position: relative;
-    transform: translateX(-7px);
+    transform: translate(-7px);
     pointer-events: none;
 
 }
@@ -130,6 +130,7 @@ nav > *{
     border-bottom: 10px solid transparent;
     
     border-left: 10px solid #FA3442;
+    transform: translateY(-9px);
     
 }
 .hour_indicator{
