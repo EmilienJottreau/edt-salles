@@ -1,8 +1,8 @@
 /* import font */
 @font-face {
     font-family: 'pt_sansregular';
-    src: url('font\ptsans-regular-webfont.woff') format('woff2'),
-         url('font\ptsans-regular-webfont.woff') format('woff');
+    src: url('font/ptsans-regular-webfont.woff') format('woff2'),
+         url('font/ptsans-regular-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
