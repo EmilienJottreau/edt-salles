@@ -65,7 +65,7 @@ function generatePage(data){
             //console.log('heure : ' + data[nom_salles[i]][k].debut.substr(11,2));
             //console.log('minute : ' + data[nom_salles[i]][k].debut.substr(14,2));
             const margTop = Math.round(size_div_horaire * (data[nom_salles[i]][k].debut.substr(14,2))/60)+"px";
-            const margBot = Math.round(size_div_horaire * (data[nom_salles[i]][k].fin.substr(14,2))/60)+"px";
+            const margBot = Math.round(size_div_horaire * ((60-data[nom_salles[i]][k].fin.substr(14,2))/60))+"px";
 
             
             div_creneau.style.marginTop = margTop;
@@ -75,6 +75,26 @@ function generatePage(data){
             div_salle_content.appendChild(div_creneau);
     
         }
+
+        //placeHourIndicator
+        const div_hour_indicator_container = document.createElement("div");
+        div_hour_indicator_container.className = "hour_indicator_container";
+        //position
+        const today = new Date();
+        var hh = today.getHours();
+        const mm = today.getMinutes();
+        if(hh>19) hh = 19;
+        div_hour_indicator_container.style.gridRowStart = hh-7;
+        const div_hour_indicator = document.createElement("div");
+        div_hour_indicator.className = "hour_indicator";
+        const div_hour_indicator_triangle = document.createElement("div");
+        div_hour_indicator_triangle.className = "hour_indicator_triangle";
+        div_hour_indicator.style.top = String(9+size_div_horaire*mm/60)+'px';
+        div_hour_indicator_triangle.style.top = String(size_div_horaire*mm/60)+'px';
+
+        div_salle_content.appendChild(div_hour_indicator_container);
+        div_hour_indicator_container.appendChild(div_hour_indicator);
+        div_hour_indicator_container.appendChild(div_hour_indicator_triangle);
     }
 }
 
@@ -259,7 +279,7 @@ async function getDate(offset){
     
 
 
-    // about page
+
     // selecteur pour salle info/campus santé
     // animation
     // revoir le style
@@ -268,6 +288,8 @@ async function getDate(offset){
     
     
 }
+
+
 
 async function main(date)
 {
